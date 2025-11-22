@@ -188,66 +188,93 @@
         .title-section p {
             font-size: 1.2rem;
             opacity: 0.9;
-            font-weight: 400;
+        }
+
+        .user-display {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .user-info-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .user-score {
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
 
         /* Navigation */
-        .nav-tabs {
+        .nav {
+            background: white;
+            border-bottom: 2px solid var(--border);
             display: flex;
-            gap: 0.5rem;
-            padding: 2rem;
             justify-content: center;
             flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            background: var(--bg-light);
-            z-index: 100;
-            box-shadow: 0 2px 10px var(--shadow);
+            box-shadow: 0 2px 8px var(--shadow);
         }
 
-        .nav-tab {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-paper);
-            border: 2px solid var(--border);
-            border-radius: 8px;
+        .nav-item {
+            padding: 1.25rem 2rem;
             cursor: pointer;
+            border-bottom: 3px solid transparent;
             transition: all 0.3s;
             font-weight: 600;
             color: var(--text-medium);
+            position: relative;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .nav-tab:hover {
-            border-color: var(--secondary);
-            transform: translateY(-2px);
+        .nav-item:hover {
+            background: var(--bg-light);
+            color: var(--primary);
         }
 
-        .nav-tab.active {
-            background: var(--primary);
-            color: var(--bg-light);
-            border-color: var(--primary);
+        .nav-item.active {
+            border-bottom-color: var(--accent);
+            color: var(--primary);
+            background: var(--bg-light);
         }
 
         /* Main Content */
         .main-content {
-            padding: 2rem;
-            min-height: 60vh;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section {
-            background: var(--bg-paper);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 2px 20px var(--shadow);
-            border: 1px solid var(--border);
-            animation: fadeIn 0.5s ease-out;
             display: none;
         }
 
         .section.active {
             display: block;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -263,94 +290,106 @@
 
         .section-title {
             font-family: 'Crimson Pro', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             color: var(--primary);
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 0.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
         }
 
-        /* Audio/Video Section */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Media Player */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .media-card {
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .media-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 24px var(--shadow);
-            border-color: var(--secondary);
+            border-color: var(--accent);
         }
 
-        .media-card-header {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white;
-            padding: 1.5rem;
-        }
-
-        .media-card-title {
+        .media-card h3 {
             font-family: 'Crimson Pro', serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .media-card-body {
-            padding: 1.5rem;
-        }
-
-        .media-type {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            background: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--primary);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
         }
 
-        .media-description {
+        .media-card p {
             color: var(--text-medium);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
         .media-player {
-            margin-top: 1rem;
-            width: 100%;
+            background: var(--bg-paper);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .media-player audio,
-        .media-player video {
+        .audio-player, .video-player {
             width: 100%;
             border-radius: 8px;
+            outline: none;
         }
 
-        .media-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-light);
-            border-radius: 6px;
-            transition: all 0.3s;
+        .video-player {
+            max-height: 300px;
+            background: #000;
         }
 
-        .media-link:hover {
+        .play-btn {
+            width: 100%;
+            padding: 0.75rem;
             background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .play-btn:hover {
+            background: var(--secondary);
             color: white;
+        }
+
+        .duration {
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
 
         /* Timeline */
@@ -363,148 +402,136 @@
             content: '';
             position: absolute;
             left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
             transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent), var(--secondary));
         }
 
         .timeline-item {
-            display: flex;
-            margin-bottom: 3rem;
             position: relative;
-            animation: slideIn 0.6s ease-out;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
         }
 
         .timeline-item:nth-child(even) {
             flex-direction: row-reverse;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         .timeline-content {
+            flex: 1;
             background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            width: 45%;
-            box-shadow: 0 4px 15px var(--shadow);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            margin: 0 2rem;
             border: 2px solid var(--border);
-            position: relative;
+            transition: all 0.3s;
         }
 
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: auto;
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
         }
 
         .timeline-year {
             font-family: 'Crimson Pro', serif;
             font-size: 2rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
 
-        .timeline-event {
+        .timeline-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
             color: var(--text-medium);
             line-height: 1.6;
         }
 
         .timeline-marker {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
             width: 20px;
             height: 20px;
             background: var(--accent);
-            border: 4px solid var(--primary);
             border-radius: 50%;
-            z-index: 10;
-        }
-
-        .importance-critical {
-            border-color: var(--danger) !important;
-            border-width: 3px;
-        }
-
-        .importance-high {
-            border-color: var(--secondary) !important;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--accent);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Terms */
         .terms-grid {
             display: grid;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
         }
 
         .term-card {
             background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
             border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 10px var(--shadow);
             transition: all 0.3s;
         }
 
         .term-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px var(--shadow);
-            border-left-width: 6px;
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px var(--shadow);
         }
 
-        .term-name {
+        .term-title {
             font-family: 'Crimson Pro', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 700;
         }
 
-        .term-definition {
+        .term-description {
             color: var(--text-medium);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* Games */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .game-card {
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            border: 2px solid var(--border);
-            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow);
             transition: all 0.3s;
             cursor: pointer;
+            border: 2px solid transparent;
+            text-align: center;
         }
 
-        .game-card:hover:not(.disabled) {
+        .game-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 32px var(--shadow);
+            box-shadow: 0 8px 24px var(--shadow);
             border-color: var(--accent);
         }
 
-        .game-card.disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
         .game-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
@@ -512,102 +539,123 @@
             font-family: 'Crimson Pro', serif;
             font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
         }
 
         .game-description {
             color: var(--text-medium);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
-        .game-score {
+        .game-difficulty {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--bg-light);
-            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--secondary);
         }
 
-        /* Game Play Area */
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
         .game-play {
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            margin-top: 1.5rem;
-            border: 2px solid var(--border);
+            box-shadow: 0 4px 12px var(--shadow);
+            margin-top: 2rem;
         }
 
         .game-question {
             font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-paper);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            line-height: 1.6;
         }
 
         .game-options {
             display: grid;
             gap: 1rem;
-            margin-top: 1rem;
         }
 
         .game-option {
-            padding: 1rem 1.5rem;
-            background: var(--bg-light);
+            padding: 1.25rem;
+            background: var(--bg-paper);
             border: 2px solid var(--border);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .game-option:hover:not(.correct):not(.incorrect) {
-            background: var(--bg-paper);
-            border-color: var(--secondary);
-            transform: translateX(5px);
+        .game-option:hover:not(.disabled) {
+            background: var(--bg-light);
+            border-color: var(--accent);
+            transform: translateX(8px);
         }
 
         .game-option.correct {
-            background: var(--success);
-            color: white;
+            background: #d4edda;
             border-color: var(--success);
+            color: var(--success);
         }
 
         .game-option.incorrect {
-            background: var(--danger);
-            color: white;
+            background: #f8d7da;
             border-color: var(--danger);
+            color: var(--danger);
         }
 
         .game-option.disabled {
             cursor: not-allowed;
+            opacity: 0.7;
         }
 
         .game-feedback {
-            margin-top: 1.5rem;
-            padding: 1rem;
+            padding: 1.25rem;
             border-radius: 8px;
+            margin-top: 1.5rem;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .game-feedback.correct {
-            background: rgba(74, 124, 89, 0.1);
+            background: #d4edda;
             color: var(--success);
             border: 2px solid var(--success);
         }
 
         .game-feedback.incorrect {
-            background: rgba(166, 60, 60, 0.1);
+            background: #f8d7da;
             color: var(--danger);
             border: 2px solid var(--danger);
         }
 
         .game-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: var(--bg-light);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--bg-paper);
             border-radius: 8px;
         }
 
@@ -616,227 +664,248 @@
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--accent);
+            font-family: 'Crimson Pro', serif;
         }
 
         .stat-label {
-            color: var(--text-medium);
             font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-top: 0.25rem;
+        }
+
+        /* Matching Game */
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .matching-column h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+        }
+
+        .matching-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .matching-item {
+            padding: 1.25rem;
+            background: var(--bg-paper);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .matching-item:hover:not(.matched):not(.disabled) {
+            background: var(--bg-light);
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .matching-item.selected {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .matching-item.matched {
+            background: #d4edda;
+            border-color: var(--success);
+            color: var(--success);
+            cursor: default;
+        }
+
+        .matching-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Timeline Ordering Game */
+        .timeline-game-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-game-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--bg-paper);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: move;
+            transition: all 0.3s;
+        }
+
+        .timeline-game-item:hover {
+            background: var(--bg-light);
+            border-color: var(--accent);
+        }
+
+        .timeline-game-item.dragging {
+            opacity: 0.5;
+        }
+
+        .drag-handle {
+            font-size: 1.5rem;
+            color: var(--text-medium);
+            cursor: move;
+        }
+
+        .timeline-game-content {
+            flex: 1;
+        }
+
+        .timeline-game-year {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .timeline-game-year.revealed {
+            display: block;
+        }
+
+        .timeline-game-event {
+            color: var(--text-dark);
+            font-weight: 500;
         }
 
         /* Leaderboard */
         .leaderboard-table {
             width: 100%;
-            margin-top: 1.5rem;
-            border-collapse: separate;
-            border-spacing: 0 0.5rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
-        .leaderboard-table thead th {
+        .leaderboard-table thead {
             background: var(--primary);
             color: var(--bg-light);
-            padding: 1rem;
+        }
+
+        .leaderboard-table th {
+            padding: 1.25rem;
             text-align: left;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
-        .leaderboard-table thead th:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-
-        .leaderboard-table thead th:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-
-        .leaderboard-table tbody tr {
-            background: white;
-            transition: all 0.3s;
-        }
-
-        .leaderboard-table tbody tr:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 15px var(--shadow);
-        }
-
-        .leaderboard-table tbody td {
-            padding: 1rem;
-            border-top: 1px solid var(--border);
+        .leaderboard-table td {
+            padding: 1.25rem;
             border-bottom: 1px solid var(--border);
         }
 
-        .leaderboard-table tbody td:first-child {
-            border-left: 1px solid var(--border);
-            border-radius: 8px 0 0 8px;
+        .leaderboard-table tbody tr:hover {
+            background: var(--bg-light);
         }
 
-        .leaderboard-table tbody td:last-child {
-            border-right: 1px solid var(--border);
-            border-radius: 0 8px 8px 0;
+        .leaderboard-table tbody tr:last-child td {
+            border-bottom: none;
         }
 
         .rank {
+            font-size: 1.3rem;
             font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
         }
 
         .rank.top-3 {
-            color: var(--accent);
+            font-size: 1.8rem;
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--primary);
+            gap: 1rem;
         }
 
         .score-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
             background: var(--accent);
             color: var(--primary);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: 700;
+            font-size: 1.1rem;
         }
 
-        /* Login Required */
         .login-required {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem 2rem;
             background: white;
             border-radius: 12px;
-            border: 2px dashed var(--border);
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
         .login-required-icon {
             font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        /* User Profile */
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .user-name {
-            font-weight: 600;
-        }
-
-        .user-score {
-            padding: 0.3rem 0.8rem;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .hidden {
-            display: none !important;
+            margin-bottom: 1.5rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 1.5rem 1rem;
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 30px;
             }
 
-            .logo {
-                font-size: 1.8rem;
+            .timeline-item {
+                flex-direction: row !important;
+            }
+
+            .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .timeline-marker {
+                left: 30px;
+            }
+
+            .matching-container {
+                grid-template-columns: 1fr;
             }
 
             .title-section h1 {
                 font-size: 2rem;
             }
 
-            .title-section p {
-                font-size: 1rem;
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .nav-tabs {
-                padding: 1rem;
-                gap: 0.3rem;
+            .nav {
+                overflow-x: auto;
             }
 
-            .nav-tab {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+            .nav-item {
+                padding: 1rem 1.5rem;
             }
 
             .main-content {
-                padding: 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-content {
-                width: calc(100% - 50px);
-                margin-left: 50px !important;
-            }
-
-            .timeline-marker {
-                left: 20px;
-            }
-
-            .timeline-item:nth-child(even) {
-                flex-direction: row;
-            }
-
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .leaderboard-table {
-                font-size: 0.9rem;
-            }
-
-            .leaderboard-table td,
-            .leaderboard-table th {
-                padding: 0.75rem;
+                padding: 2rem 1rem;
             }
         }
     </style>
@@ -846,599 +915,802 @@
     <div id="app" class="app-container"></div>
 
     <script>
-        // Application State
-        const state = {
+        // State management
+        let state = {
             lang: 'fi',
-            user: null,
             activeTab: 'audio',
+            user: null,
             activeGame: null,
             gameState: {
                 currentQuestion: 0,
                 score: 0,
                 answers: [],
+                selectedAnswer: null,
                 showFeedback: false,
-                selectedAnswer: null
+                matchingSelected: null,
+                matchingPairs: [],
+                timelineOrder: []
             }
         };
 
-        // Content Data
+        // Content
         const content = {
             fi: {
-                appTitle: "Historia 8",
-                subtitle: "Kansanvallan kohtalonhetket Suomessa",
+                title: 'Historia 8',
+                subtitle: 'Kansanvallan kohtalonhetket Suomessa',
                 nav: {
-                    audio: "Ääni & Video",
-                    timeline: "Aikajana",
-                    terms: "Termit",
-                    games: "Pelit",
-                    leaderboard: "Tulostaulukko"
+                    audio: '🎧 Ääni & Video',
+                    timeline: '📅 Aikajana',
+                    terms: '📚 Termit',
+                    games: '🎮 Pelit',
+                    leaderboard: '🏆 Tulostaulukko'
                 },
-                login: "Kirjaudu sisään",
-                logout: "Kirjaudu ulos",
-                loginWithGoogle: "Kirjaudu Google-tilillä",
-                chapters: [
-                    {
-                        id: 1,
-                        title: "Lapuanliikkeen synty",
-                        // REPLACE THIS URL WITH YOUR GOOGLE DRIVE SHARE LINK
-                        // See instructions in README.md
-                        audioUrl: "Lapuanliike_nousu_tuho_ja_Suomen_selviytyminen.m4a",
-                        // audioUrl: "https://drive.google.com/uc?export=download&id=1Zp1qyLalpxAmO_YJFbDMtRh0o1hVaQl-",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Tutustu lapuanliikkeen syntyyn ja taustaan 1920-luvun lopun Suomessa."
-                    },
-                    {
-                        id: 2,
-                        title: "Väkivalta ja muilutukset",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Kommunistien vastaiset väkivaltateot ja niiden seuraukset."
-                    },
-                    {
-                        id: 3,
-                        title: "Talonpoikaismarssi 1930",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "12 000 lapuanliikkeen kannattajan marssi Helsinkiin."
-                    },
-                    {
-                        id: 4,
-                        title: "Mäntsälän kapina",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Lapuanliikkeen viimeinen yritys ja sen päättyminen."
-                    }
+                loginWithGoogle: '🔐 Kirjaudu Google-tilillä',
+                logout: 'Kirjaudu ulos',
+                points: 'pistettä',
+                audioVideos: [
+                    // {
+                    //     id: 1,
+                    //     title: 'Lapuanliikkeen synty',
+                    //     description: 'Opi lapuanliikkeen taustoista ja sen synnystä 1920-luvun lopun Suomessa.',
+                    //     type: 'audio',
+                    //     duration: '5:32',
+                    //     file: 'audio/lapuanliike_synty.mp3'
+                    // },
+                    // {
+                    //     id: 2,
+                    //     title: 'Muilutukset ja väkivalta',
+                    //     description: 'Tutustu lapuanliikkeen väkivaltaisiin menetelmiin ja muilutuksiin.',
+                    //     type: 'video',
+                    //     duration: '8:45',
+                    //     file: 'videos/muilutukset.mp4'
+                    // },
+                    // {
+                    //     id: 3,
+                    //     title: 'Talonpoikaismarssi 1930',
+                    //     description: 'Katso dokumentti suuresta talonpoikaismarssista ja sen vaikutuksista.',
+                    //     type: 'video',
+                    //     duration: '12:15',
+                    //     file: 'videos/talonpoikaismarssi.mp4'
+                    // },
+                    // {
+                    //     id: 4,
+                    //     title: 'Mäntsälän kapina',
+                    //     description: 'Kuuntele kertomus lapuanliikkeen loppuvaiheista ja Mäntsälän kapinasta.',
+                    //     type: 'audio',
+                    //     duration: '6:18',
+                    //     file: 'audio/mantsala.mp3'
+                    // },
+                    // {
+                    //     id: 5,
+                    //     title: 'Demokratian säilyminen',
+                    //     description: 'Ymmärrä miksi Suomi säilyi demokratiana toisin kuin monet muut Euroopan maat.',
+                    //     type: 'video',
+                    //     duration: '10:30',
+                    //     file: 'videos/demokratia.mp4'
+                    // }
                 ],
                 timeline: [
                     {
-                        year: "1918",
-                        event: "Suomen sisällissota päättyy valkoisten voittoon. Kommunismin vastainen asenne vahvistuu.",
-                        importance: "critical"
+                        year: '1929',
+                        title: 'Lapuanliikkeen alkaminen',
+                        description: 'Kommunismin vastainen äärioikeistolainen liike alkoi Pohjanmaalta Lapualta. Liikkeen miehet ärsyyttivät kommunistien osallistuminen poliittiseen elämään.'
                     },
                     {
-                        year: "1920-luvun loppu",
-                        event: "Lapuanliike syntyy Pohjanmaalla vastustamaan kommunistien osallistumista poliittiseen elämään.",
-                        importance: "critical"
+                        year: '1930',
+                        title: 'Muilutukset alkavat',
+                        description: 'Lapualaiset aloittivat väkivaltaiset autokuljetukset eli "muilutukset". Kustaa Salminen raahattiin yöllä kodistaan ja pahoinpideltiin. Uhrit kuljetettiin usein itärajalle.'
                     },
                     {
-                        year: "1930 (syyskuu)",
-                        event: "Kustaa Salmisen ja muiden kommunistien muilutukset ja pahoinpitelyt.",
-                        importance: "high"
+                        year: '1930',
+                        title: 'Talonpoikaismarssi',
+                        description: 'Noin 12 000 lapuanliikkeen kannattajaa marssi Helsinkiin. He vaativat hallitusta eroamaan ja eduskuntaa hyväksymään kommunistien toiminnan kieltävät lait. Lait hyväksyttiin pian marssin jälkeen.'
                     },
                     {
-                        year: "1930 (kesä)",
-                        event: "Talonpoikaismarssi Helsinkiin. Noin 12 000 osallistujaa. Kommunistilait hyväksytään.",
-                        importance: "critical"
+                        year: '1930',
+                        title: 'Lehtipainojen tuhoaminen',
+                        description: 'Lapualaiset hyökkäsivät kommunististen lehtipainojen kimppuun, särkivät painokoneita ja tuhosivat tiloja ympäri Suomea.'
                     },
                     {
-                        year: "1932",
-                        event: "Mäntsälän kapina. Noin 400 aseistettua lapualaista. Presidentti Svinhufvud vaatii hajaantumaan.",
-                        importance: "critical"
+                        year: '1932',
+                        title: 'Mäntsälän kapina',
+                        description: 'Noin 400 aseistautunutta lapualaista piiritti työväentalon Mäntsälässä. Tilanne kiristyi, kun lisää kannattajia virtasi paikalle. Armeija saartoi alueen. Presidentti Svinhufvud piti radiossa puheen ja vaati miehiä hajaantumaan. Johtomiehet vangittiin.'
                     },
                     {
-                        year: "1932 (loppu)",
-                        event: "Lapuanliike lakkautetaan. Kannattajat perustavat Isänmaallisen kansanliikkeen (IKL).",
-                        importance: "high"
+                        year: '1932',
+                        title: 'Lapuanliikkeen lakkauttaminen',
+                        description: 'Mäntsälän kapinan jälkeen lapuanliike lakkautettiin. Kannattajat perustivat uuden puolueen, Isänmaallisen kansanliikkeen (IKL). Suomi säilyi demokratiana.'
                     }
                 ],
                 terms: [
                     {
-                        term: "Lapuanliike",
-                        definition: "Äärioikeistolainen, kommunisminvastainen liike, joka syntyi Pohjanmaalla 1920-luvun lopulla. Turvautui väkivaltaan ja halveksi demokratiaa."
+                        term: 'Lapuanliike',
+                        definition: 'Kommunismia vastustava äärioikeistolainen liike, joka alkoi Pohjanmaalta Lapualta 1920-luvun lopulla. Liike turvautui väkivaltaan ja halusi kieltää kommunistien toiminnan.'
                     },
                     {
-                        term: "Muilutus",
-                        definition: "Lapuanliikkeen väkivaltainen autokuljetus, jossa kommunisteja vietiin pakolla toiseen paikkaan, usein itärajalle. Nimitys tuli Muilun veljesten mukaan."
+                        term: 'Muilutus',
+                        definition: 'Väkivaltainen autokuljetus, jossa lapualaiset kaappasivat kommunisteja tai heidän kannattajiaan, pahoinpitelivät heitä ja kuljettivat usein itärajalle. Nimi tuli Muilun veljeksistä.'
                     },
                     {
-                        term: "Talonpoikaismarssi",
-                        definition: "Vuonna 1930 järjestetty suuri marssi Helsinkiin, johon osallistui noin 12 000 lapuanliikkeen kannattajaa. Tarkoitus oli painostaa hallitusta ja eduskuntaa."
+                        term: 'Talonpoikaismarssi',
+                        definition: 'Vuonna 1930 järjestetty suuri marssi, johon osallistui noin 12 000 lapuanliikkeen kannattajaa. Marssin tavoitteena oli painostaa hallitusta ja eduskuntaa hyväksymään kommunisteja koskevat lait.'
                     },
                     {
-                        term: "Mäntsälän kapina",
-                        definition: "Lapuanliikkeen viimeinen väkivaltainen yritys vuonna 1932, jossa noin 400 aseistettua miestä linnoittautui Mäntsälään. Päättyi presidentin vaatimuksesta."
+                        term: 'Vihtori Kosola',
+                        definition: 'Pohjanmaalainen talonpoika ja yksi lapuanliikkeen johtohahmoista. Johti talonpoikaismarsssia ja oli merkittävä hahmo liikkeen toiminnassa.'
                     },
                     {
-                        term: "Vihtori Kosola",
-                        definition: "Pohjanmaalainen talonpoika ja yksi lapuanliikkeen johtohahmoista. Johti talonpoikaismarssiakin."
+                        term: 'Mäntsälän kapina',
+                        definition: 'Vuonna 1932 tapahtunut aseellinen kapinayritys, jossa noin 400 lapualaista linnoittautui Mäntsälään. Presidentti Svinhufvudin puhe lopetti kapinan ja johti lapuanliikkeen lakkauttamiseen.'
                     },
                     {
-                        term: "K.J. Ståhlberg",
-                        definition: "Suomen ensimmäinen presidentti, jonka kyyditseminen itärajalle suututti kansaa ja heikensi lapuanliikkeen kannatusta."
+                        term: 'IKL (Isänmaallinen kansanliike)',
+                        definition: 'Lapuanliikkeen lakkauttamisen jälkeen perustettu äärioikeistolainen puolue, johon siirtyivät monet lapuanliikkeen kannattajat.'
                     },
                     {
-                        term: "Kommunistilait",
-                        definition: "Lait, jotka kielsivät kommunistien toiminnan Suomessa. Hyväksyttiin talonpoikaismarssin painostuksesta vuonna 1930."
-                    },
-                    {
-                        term: "IKL (Isänmaallinen kansanliike)",
-                        definition: "Puolue, jonka lapuanliikkeen kannattajat perustivat liikkeen lakkauttamisen jälkeen vuonna 1932."
-                    },
-                    {
-                        term: "Diktatuuri",
-                        definition: "Hallitusmuoto, jossa valta on yhden ihmisen tai pienen ryhmän käsissä. Osa lapualaisista halusi perustaa Suomeen diktatuurin."
-                    },
-                    {
-                        term: "Demokratia",
-                        definition: "Hallitusmuoto, jossa valta kuuluu kansalle. Suomi säilyi demokratiana lapuanliikkeen uhkasta huolimatta."
+                        term: 'Kommunistilait',
+                        definition: 'Vuonna 1930 hyväksytyt lait, jotka kielsivät kommunistisen toiminnan Suomessa. Lait hyväksyttiin talonpoikaismarssin painostuksen seurauksena.'
                     }
                 ],
                 games: {
-                    quiz: {
-                        title: "Tietokilpailu",
-                        description: "Testaa tietosi lapuanliikkeestä",
-                        icon: "❓",
-                        questions: [
-                            {
-                                question: "Minä vuonna järjestettiin talonpoikaismarssi Helsinkiin?",
-                                options: ["1928", "1930", "1932", "1935"],
-                                correct: 1
-                            },
-                            {
-                                question: "Kuinka monta ihmistä osallistui talonpoikaismarssiin?",
-                                options: ["Noin 5 000", "Noin 8 000", "Noin 12 000", "Noin 20 000"],
-                                correct: 2
-                            },
-                            {
-                                question: "Mistä lapuanliike sai nimensä?",
-                                options: ["Pohjanmaalta Lapualta", "Lapista", "Lapuan joesta", "Johtajan sukunimestä"],
-                                correct: 0
-                            },
-                            {
-                                question: "Kuka oli yksi lapuanliikkeen johtohahmoista?",
-                                options: ["Mannerheim", "Vihtori Kosola", "Svinhufvud", "Ståhlberg"],
-                                correct: 1
-                            },
-                            {
-                                question: "Mitä tapahtui Mäntsälän kapinassa 1932?",
-                                options: [
-                                    "Kapinalliset voittivat",
-                                    "Presidentti Svinhufvud vaati hajaantumista ja kapina päättyi",
-                                    "Armeija hyökkäsi kapinan kimppuun",
-                                    "Kapina jatkui vuosia"
-                                ],
-                                correct: 1
-                            },
-                            {
-                                question: "Mikä oli muilutus?",
-                                options: [
-                                    "Poliittinen kokous",
-                                    "Väkivaltainen autokuljetus",
-                                    "Marssi",
-                                    "Lakimuutos"
-                                ],
-                                correct: 1
-                            },
-                            {
-                                question: "Miksi Suomi säilyi demokratiana?",
-                                options: [
-                                    "Kansa oli tyytyväinen, liikkeeltä puuttui selkeä johtaja ja väkivalta meni liian pitkälle",
-                                    "Ulkomaiden painostus",
-                                    "Armeija esti kaiken",
-                                    "Kommunistit voittivat"
-                                ],
-                                correct: 0
-                            },
-                            {
-                                question: "Mitä tapahtui lapuanliikkeelle Mäntsälän kapinan jälkeen?",
-                                options: [
-                                    "Se vahvistui entisestään",
-                                    "Se lakkautettiin",
-                                    "Se sai enemmän kannatusta",
-                                    "Ei mitään erityistä"
-                                ],
-                                correct: 1
-                            }
-                        ]
-                    },
-                    truefalse: {
-                        title: "Totta vai tarua",
-                        description: "Päätä ovatko väittämät tosia vai tarua",
-                        icon: "✓✗",
-                        questions: [
-                            {
-                                statement: "Lapuanliike syntyi Helsingissä",
-                                correct: false
-                            },
-                            {
-                                statement: "Talonpoikaismarssiin osallistui noin 12 000 ihmistä",
-                                correct: true
-                            },
-                            {
-                                statement: "Lapuanliike kannatti demokratiaa",
-                                correct: false
-                            },
-                            {
-                                statement: "Mäntsälän kapina tapahtui vuonna 1932",
-                                correct: true
-                            },
-                            {
-                                statement: "Suomesta tuli diktatuuri lapuanliikkeen ansiosta",
-                                correct: false
-                            }
-                        ]
-                    }
+                    title: 'Pelit ja Tehtävät',
+                    truefalse: 'Totta vai tarua',
+                    multichoice: 'Monivalinta',
+                    matching: 'Yhdistä parit',
+                    timeline: 'Järjestä aikajärjestykseen'
                 },
-                loginRequired: "Kirjaudu sisään nähdäksesi tulostaulukon",
-                loginRequiredDesc: "Kilpaile muiden oppilaiden kanssa ja seuraa omaa edistymistäsi!",
-                yourScore: "Sinun pisteesi",
-                correctAnswers: "Oikein",
-                wrongAnswers: "Väärin",
-                nextQuestion: "Seuraava kysymys",
-                playAgain: "Pelaa uudelleen",
-                backToGames: "Takaisin peleihin"
+                playAgain: '🔄 Pelaa uudelleen',
+                backToGames: '◀ Takaisin peleihin',
+                nextQuestion: 'Seuraava kysymys →',
+                checkAnswer: 'Tarkista vastaus',
+                yourScore: 'Pisteesi',
+                correctAnswers: 'Oikein',
+                wrongAnswers: 'Väärin',
+                loginRequired: 'Kirjautuminen vaaditaan',
+                loginRequiredDesc: 'Kirjaudu sisään nähdäksesi tulostaulukon ja tallentaaksesi edistymisesi.'
             },
             ru: {
-                appTitle: "История 8",
-                subtitle: "Критические моменты демократии в Финляндии",
+                title: 'История 8',
+                subtitle: 'Судьбоносные моменты демократии в Финляндии',
                 nav: {
-                    audio: "Аудио и Видео",
-                    timeline: "Хронология",
-                    terms: "Термины",
-                    games: "Игры",
-                    leaderboard: "Таблица лидеров"
+                    audio: '🎧 Аудио & Видео',
+                    timeline: '📅 Хронология',
+                    terms: '📚 Термины',
+                    games: '🎮 Игры',
+                    leaderboard: '🏆 Таблица лидеров'
                 },
-                login: "Войти",
-                logout: "Выйти",
-                loginWithGoogle: "Войти через Google",
-                chapters: [
+                loginWithGoogle: '🔐 Войти через Google',
+                logout: 'Выйти',
+                points: 'очков',
+                audioVideos: [
                     {
                         id: 1,
-                        title: "Возникновение Лапуаского движения",
-                        audioUrl: "lapuan_movement_ru.m4a",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Узнайте о возникновении и предпосылках Лапуаского движения в конце 1920-х годов."
+                        title: 'Возникновение движения Лапуа',
+                        description: 'Узнайте о предпосылках и возникновении движения Лапуа в конце 1920-х годов в Финляндии.',
+                        type: 'audio',
+                        duration: '5:32',
+                        file: 'lapuan_movement_ru.m4a'
                     },
                     {
-                        id: 2,
-                        title: "Насилие и мюйлютусы",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Насильственные акты против коммунистов и их последствия."
+                        id: 1,
+                        title: 'Возникновение движения Лапуа',
+                        description: 'Узнайте о предпосылках и возникновении движения Лапуа в конце 1920-х годов в Финляндии.',
+                        type: 'video',
+                        duration: '5:32',
+                        file: 'lapuan_movement_video_ru.mp4'
                     },
-                    {
-                        id: 3,
-                        title: "Крестьянский марш 1930 года",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Марш 12 000 сторонников Лапуаского движения в Хельсинки."
-                    },
-                    {
-                        id: 4,
-                        title: "Мятеж в Мянтсяля",
-                        audioUrl: "YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE",
-                        videoUrl: "YOUR_GOOGLE_DRIVE_VIDEO_LINK_HERE",
-                        description: "Последняя попытка Лапуаского движения и её завершение."
-                    }
+                    // {
+                    //     id: 2,
+                    //     title: 'Муилутусы и насилие',
+                    //     description: 'Познакомьтесь с насильственными методами движения Лапуа и муилутусами.',
+                    //     type: 'video',
+                    //     duration: '8:45',
+                    //     file: 'videos/muilutukset.mp4'
+                    // },
+                    // {
+                    //     id: 3,
+                    //     title: 'Крестьянский марш 1930',
+                    //     description: 'Посмотрите документальный фильм о великом крестьянском марше и его последствиях.',
+                    //     type: 'video',
+                    //     duration: '12:15',
+                    //     file: 'videos/talonpoikaismarssi.mp4'
+                    // },
+                    // {
+                    //     id: 4,
+                    //     title: 'Мятеж в Мянтсяля',
+                    //     description: 'Послушайте рассказ о завершающей фазе движения Лапуа и мятеже в Мянтсяля.',
+                    //     type: 'audio',
+                    //     duration: '6:18',
+                    //     file: 'audio/mantsala.mp3'
+                    // },
+                    // {
+                    //     id: 5,
+                    //     title: 'Сохранение демократии',
+                    //     description: 'Поймите, почему Финляндия осталась демократией в отличие от многих других европейских стран.',
+                    //     type: 'video',
+                    //     duration: '10:30',
+                    //     file: 'videos/demokratia.mp4'
+                    // }
                 ],
                 timeline: [
                     {
-                        year: "1918",
-                        event: "Гражданская война в Финляндии заканчивается победой белых. Усиливается антикоммунистические настроения.",
-                        importance: "critical"
+                        year: '1929',
+                        title: 'Начало движения Лапуа',
+                        description: 'Антикоммунистическое крайне правое движение началось в Похьянмаа, в Лапуа. Участников движения раздражало участие коммунистов в политической жизни.'
                     },
                     {
-                        year: "Конец 1920-х",
-                        event: "Лапуаское движение возникает в Остроботнии, выступая против участия коммунистов в политической жизни.",
-                        importance: "critical"
+                        year: '1930',
+                        title: 'Начало муилутусов',
+                        description: 'Лапуанцы начали насильственные автомобильные перевозки, или "муилутусы". Кустаа Салминена вытащили из дома ночью и избили. Жертв часто везли на восточную границу.'
                     },
                     {
-                        year: "1930 (сентябрь)",
-                        event: "Мюйлютусы и избиения Кустаа Салминена и других коммунистов.",
-                        importance: "high"
+                        year: '1930',
+                        title: 'Крестьянский марш',
+                        description: 'Около 12 000 сторонников движения Лапуа прошли маршем до Хельсинки. Они требовали отставки правительства и принятия парламентом законов, запрещающих деятельность коммунистов. Законы были приняты вскоре после марша.'
                     },
                     {
-                        year: "1930 (лето)",
-                        event: "Крестьянский марш в Хельсинки. Около 12 000 участников. Принимаются антикоммунистические законы.",
-                        importance: "critical"
+                        year: '1930',
+                        title: 'Разрушение типографий',
+                        description: 'Лапуанцы нападали на коммунистические типографии, ломали печатные машины и разрушали помещения по всей Финляндии.'
                     },
                     {
-                        year: "1932",
-                        event: "Мятеж в Мянтсяля. Около 400 вооруженных лапуасцев. Президент Свинхувуд требует разойтись.",
-                        importance: "critical"
+                        year: '1932',
+                        title: 'Мятеж в Мянтсяля',
+                        description: 'Около 400 вооруженных лапуанцев окружили рабочий дом в Мянтсяля. Ситуация обострилась, когда на место прибыло больше сторонников. Армия окружила район. Президент Свинхувуд выступил по радио и потребовал от людей разойтись. Лидеры были арестованы.'
                     },
                     {
-                        year: "1932 (конец)",
-                        event: "Лапуаское движение запрещено. Сторонники основывают Патриотическое народное движение (IKL).",
-                        importance: "high"
+                        year: '1932',
+                        title: 'Упразднение движения Лапуа',
+                        description: 'После мятежа в Мянтсяля движение Лапуа было упразднено. Сторонники основали новую партию - Патриотическое народное движение (IKL). Финляндия осталась демократией.'
                     }
                 ],
                 terms: [
                     {
-                        term: "Лапуаское движение",
-                        definition: "Крайне правое антикоммунистическое движение, возникшее в Остроботнии в конце 1920-х годов. Прибегало к насилию и презирало демократию."
+                        term: 'Движение Лапуа',
+                        definition: 'Антикоммунистическое крайне правое движение, начавшееся в Похьянмаа, в Лапуа, в конце 1920-х годов. Движение прибегало к насилию и хотело запретить деятельность коммунистов.'
                     },
                     {
-                        term: "Мюйлютус",
-                        definition: "Насильственная перевозка на автомобиле, практикуемая Лапуаским движением, при которой коммунистов принудительно везли в другое место, часто к восточной границе."
+                        term: 'Муилутус',
+                        definition: 'Насильственная автомобильная перевозка, при которой лапуанцы похищали коммунистов или их сторонников, избивали их и часто везли на восточную границу. Название происходит от братьев Муилу.'
                     },
                     {
-                        term: "Крестьянский марш",
-                        definition: "Большой марш в Хельсинки, организованный в 1930 году, в котором участвовало около 12 000 сторонников Лапуаского движения для давления на правительство."
+                        term: 'Крестьянский марш',
+                        definition: 'Большой марш, организованный в 1930 году, в котором приняло участие около 12 000 сторонников движения Лапуа. Целью марша было оказать давление на правительство и парламент для принятия законов против коммунистов.'
                     },
                     {
-                        term: "Мятеж в Мянтсяля",
-                        definition: "Последняя насильственная попытка Лапуаского движения в 1932 году, когда около 400 вооруженных людей окопались в Мянтсяля."
+                        term: 'Вихтори Косола',
+                        definition: 'Крестьянин из Похьянмаа и один из лидеров движения Лапуа. Возглавлял крестьянский марш и был важной фигурой в деятельности движения.'
                     },
                     {
-                        term: "Вихтори Косола",
-                        definition: "Остроботнийский крестьянин и одна из ключевых фигур Лапуаского движения. Также возглавлял крестьянский марш."
+                        term: 'Мятеж в Мянтсяля',
+                        definition: 'Попытка вооруженного восстания, произошедшая в 1932 году, когда около 400 лапуанцев укрепились в Мянтсяля. Речь президента Свинхувуда положила конец восстанию и привела к упразднению движения Лапуа.'
                     },
                     {
-                        term: "К.Ю. Стольберг",
-                        definition: "Первый президент Финляндии, чья насильственная перевозка к восточной границе возмутила народ и ослабила поддержку Лапуаского движения."
+                        term: 'IKL (Патриотическое народное движение)',
+                        definition: 'Крайне правая партия, основанная после упразднения движения Лапуа, в которую перешли многие сторонники движения Лапуа.'
                     },
                     {
-                        term: "Антикоммунистические законы",
-                        definition: "Законы, запрещавшие деятельность коммунистов в Финляндии. Приняты под давлением крестьянского марша в 1930 году."
-                    },
-                    {
-                        term: "IKL (Патриотическое народное движение)",
-                        definition: "Партия, основанная сторонниками Лапуаского движения после его запрета в 1932 году."
-                    },
-                    {
-                        term: "Диктатура",
-                        definition: "Форма правления, при которой власть находится в руках одного человека или небольшой группы. Часть лапуасцев хотела установить в Финляндии диктатуру."
-                    },
-                    {
-                        term: "Демократия",
-                        definition: "Форма правления, при которой власть принадлежит народу. Финляндия сохранила демократию, несмотря на угрозу со стороны Лапуаского движения."
+                        term: 'Коммунистические законы',
+                        definition: 'Законы, принятые в 1930 году, которые запретили коммунистическую деятельность в Финляндии. Законы были приняты в результате давления крестьянского марша.'
                     }
                 ],
                 games: {
-                    quiz: {
-                        title: "Викторина",
-                        description: "Проверьте свои знания о Лапуаском движении",
-                        icon: "❓",
-                        questions: [
-                            {
-                                question: "В каком году был организован крестьянский марш в Хельсинки?",
-                                options: ["1928", "1930", "1932", "1935"],
-                                correct: 1
-                            },
-                            {
-                                question: "Сколько человек участвовало в крестьянском марше?",
-                                options: ["Около 5 000", "Около 8 000", "Около 12 000", "Около 20 000"],
-                                correct: 2
-                            },
-                            {
-                                question: "Откуда Лапуаское движение получило свое название?",
-                                options: ["Из Остроботнии, города Лапуа", "Из Лапландии", "От реки Лапуа", "От фамилии лидера"],
-                                correct: 0
-                            },
-                            {
-                                question: "Кто был одной из ключевых фигур Лапуаского движения?",
-                                options: ["Маннергейм", "Вихтори Косола", "Свинхувуд", "Стольберг"],
-                                correct: 1
-                            },
-                            {
-                                question: "Что произошло во время мятежа в Мянтсяля в 1932 году?",
-                                options: [
-                                    "Мятежники победили",
-                                    "Президент Свинхувуд потребовал разойтись, и мятеж закончился",
-                                    "Армия атаковала мятежников",
-                                    "Мятеж продолжался годами"
-                                ],
-                                correct: 1
-                            },
-                            {
-                                question: "Что такое мюйлютус?",
-                                options: [
-                                    "Политическое собрание",
-                                    "Насильственная перевозка на автомобиле",
-                                    "Марш",
-                                    "Изменение закона"
-                                ],
-                                correct: 1
-                            },
-                            {
-                                question: "Почему Финляндия осталась демократией?",
-                                options: [
-                                    "Народ был доволен, у движения не было четкого лидера, и насилие зашло слишком далеко",
-                                    "Давление из-за рубежа",
-                                    "Армия все предотвратила",
-                                    "Коммунисты победили"
-                                ],
-                                correct: 0
-                            },
-                            {
-                                question: "Что случилось с Лапуаским движением после мятежа в Мянтсяля?",
-                                options: [
-                                    "Оно еще больше усилилось",
-                                    "Оно было запрещено",
-                                    "Оно получило больше поддержки",
-                                    "Ничего особенного"
-                                ],
-                                correct: 1
-                            }
-                        ]
-                    },
-                    truefalse: {
-                        title: "Правда или ложь",
-                        description: "Определите, правдивы ли утверждения",
-                        icon: "✓✗",
-                        questions: [
-                            {
-                                statement: "Лапуаское движение возникло в Хельсинки",
-                                correct: false
-                            },
-                            {
-                                statement: "В крестьянском марше участвовало около 12 000 человек",
-                                correct: true
-                            },
-                            {
-                                statement: "Лапуаское движение поддерживало демократию",
-                                correct: false
-                            },
-                            {
-                                statement: "Мятеж в Мянтсяля произошел в 1932 году",
-                                correct: true
-                            },
-                            {
-                                statement: "Финляндия стала диктатурой благодаря Лапуаскому движению",
-                                correct: false
-                            }
-                        ]
-                    }
+                    title: 'Игры и задания',
+                    truefalse: 'Правда или ложь',
+                    multichoice: 'Множественный выбор',
+                    matching: 'Соедини пары',
+                    timeline: 'Расставь по порядку'
                 },
-                loginRequired: "Войдите, чтобы увидеть таблицу лидеров",
-                loginRequiredDesc: "Соревнуйтесь с другими учениками и следите за своим прогрессом!",
-                yourScore: "Ваши очки",
-                correctAnswers: "Правильно",
-                wrongAnswers: "Неправильно",
-                nextQuestion: "Следующий вопрос",
-                playAgain: "Играть снова",
-                backToGames: "Назад к играм"
+                playAgain: '🔄 Играть снова',
+                backToGames: '◀ Назад к играм',
+                nextQuestion: 'Следующий вопрос →',
+                checkAnswer: 'Проверить ответ',
+                yourScore: 'Ваш счет',
+                correctAnswers: 'Правильно',
+                wrongAnswers: 'Неправильно',
+                loginRequired: 'Требуется вход',
+                loginRequiredDesc: 'Войдите, чтобы увидеть таблицу лидеров и сохранить свой прогресс.'
+            }
+        };
+
+        // Games data
+        const gamesData = {
+            truefalse: {
+                fi: {
+                    id: 'truefalse',
+                    title: '✓ Totta vai Tarua',
+                    description: 'Testaa tietosi lapuanliikkeestä vastaamalla totta vai tarua -kysymyksiin.',
+                    difficulty: 'easy',
+                    icon: '✓✗',
+                    questions: [
+                        {
+                            statement: 'Lapuanliike alkoi Pohjanmaalta Lapualta.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Lapuanliike kannatti kommunismia.',
+                            correct: false
+                        },
+                        {
+                            statement: 'Muilutuksissa uhrit kuljetettiin usein itärajalle.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Talonpoikaismarssiin osallistui noin 120 000 ihmistä.',
+                            correct: false
+                        },
+                        {
+                            statement: 'Vihtori Kosola oli yksi lapuanliikkeen johtohahmoista.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Mäntsälän kapina tapahtui vuonna 1932.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Suomesta tuli diktatuuri lapuanliikkeen myötä.',
+                            correct: false
+                        },
+                        {
+                            statement: 'Kommunistilait hyväksyttiin talonpoikaismarssin jälkeen.',
+                            correct: true
+                        }
+                    ]
+                },
+                ru: {
+                    id: 'truefalse',
+                    title: '✓ Правда или Ложь',
+                    description: 'Проверьте свои знания о движении Лапуа, отвечая на вопросы "правда или ложь".',
+                    difficulty: 'easy',
+                    icon: '✓✗',
+                    questions: [
+                        {
+                            statement: 'Движение Лапуа началось в Похьянмаа, в Лапуа.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Движение Лапуа поддерживало коммунизм.',
+                            correct: false
+                        },
+                        {
+                            statement: 'При муилутусах жертв часто везли на восточную границу.',
+                            correct: true
+                        },
+                        {
+                            statement: 'В крестьянском марше участвовало около 120 000 человек.',
+                            correct: false
+                        },
+                        {
+                            statement: 'Вихтори Косола был одним из лидеров движения Лапуа.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Мятеж в Мянтсяля произошел в 1932 году.',
+                            correct: true
+                        },
+                        {
+                            statement: 'Финляндия стала диктатурой в результате движения Лапуа.',
+                            correct: false
+                        },
+                        {
+                            statement: 'Коммунистические законы были приняты после крестьянского марша.',
+                            correct: true
+                        }
+                    ]
+                }
+            },
+            multichoice: {
+                fi: {
+                    id: 'multichoice',
+                    title: '📝 Monivalintakysymykset',
+                    description: 'Vastaa monivalintakysymyksiin ja testaa ymmärrystäsi lapuanliikkeestä.',
+                    difficulty: 'medium',
+                    icon: '📝',
+                    questions: [
+                        {
+                            question: 'Minä vuonna talonpoikaismarssi järjestettiin?',
+                            options: ['1928', '1930', '1932', '1934'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Kuinka monta ihmistä osallistui talonpoikaismarssiin?',
+                            options: ['Noin 5 000', 'Noin 12 000', 'Noin 25 000', 'Noin 50 000'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Kuka oli presidentti Mäntsälän kapinan aikana?',
+                            options: ['K. J. Ståhlberg', 'P. E. Svinhufvud', 'Lauri Relander', 'Carl Gustaf Mannerheim'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Mikä oli lapuanliikkeen pääasiallinen tavoite?',
+                            options: [
+                                'Tukea demokratiaa',
+                                'Kieltää kommunistien toiminta',
+                                'Parantaa työläisten oloja',
+                                'Liittyä Neuvostoliittoon'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Mikä puolue perustettiin lapuanliikkeen lakkauttamisen jälkeen?',
+                            options: ['SDP', 'Kokoomus', 'IKL', 'Keskusta'],
+                            correct: 2
+                        },
+                        {
+                            question: 'Mistä nimi "muilutus" tuli?',
+                            options: [
+                                'Muilun veljeksistä',
+                                'Muilu-sanasta',
+                                'Muiluttaa-verbistä',
+                                'Lapuan Muilusta'
+                            ],
+                            correct: 0
+                        }
+                    ]
+                },
+                ru: {
+                    id: 'multichoice',
+                    title: '📝 Вопросы с вариантами',
+                    description: 'Ответьте на вопросы с несколькими вариантами ответов и проверьте свое понимание движения Лапуа.',
+                    difficulty: 'medium',
+                    icon: '📝',
+                    questions: [
+                        {
+                            question: 'В каком году был организован крестьянский марш?',
+                            options: ['1928', '1930', '1932', '1934'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Сколько человек участвовало в крестьянском марше?',
+                            options: ['Около 5 000', 'Около 12 000', 'Около 25 000', 'Около 50 000'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Кто был президентом во время мятежа в Мянтсяля?',
+                            options: ['К. Й. Столберг', 'П. Э. Свинхувуд', 'Лаури Реландер', 'Карл Густав Маннергейм'],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какова была главная цель движения Лапуа?',
+                            options: [
+                                'Поддержать демократию',
+                                'Запретить деятельность коммунистов',
+                                'Улучшить условия рабочих',
+                                'Присоединиться к Советскому Союзу'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какая партия была основана после упразднения движения Лапуа?',
+                            options: ['СДПФ', 'Коалиция', 'IKL', 'Центр'],
+                            correct: 2
+                        },
+                        {
+                            question: 'Откуда произошло название "муилутус"?',
+                            options: [
+                                'От братьев Муилу',
+                                'От слова Муилу',
+                                'От глагола мuiluttaa',
+                                'От Муилу в Лапуа'
+                            ],
+                            correct: 0
+                        }
+                    ]
+                }
+            },
+            matching: {
+                fi: {
+                    id: 'matching',
+                    title: '🔗 Yhdistä parit',
+                    description: 'Yhdistä henkilöt, tapahtumat ja käsitteet oikeisiin selityksiin.',
+                    difficulty: 'medium',
+                    icon: '🔗',
+                    pairs: [
+                        { left: 'Vihtori Kosola', right: 'Lapuanliikkeen johtohahmo' },
+                        { left: 'Kustaa Salminen', right: 'Muilutuksen uhri' },
+                        { left: 'P. E. Svinhufvud', right: 'Presidentti Mäntsälän kapinan aikana' },
+                        { left: 'Talonpoikaismarssi', right: 'Tapahtui vuonna 1930' },
+                        { left: 'Mäntsälä', right: 'Kapinapaikka vuonna 1932' },
+                        { left: 'IKL', right: 'Lapuanliikkeen seuraaja' }
+                    ]
+                },
+                ru: {
+                    id: 'matching',
+                    title: '🔗 Соедини пары',
+                    description: 'Соедините людей, события и понятия с правильными объяснениями.',
+                    difficulty: 'medium',
+                    icon: '🔗',
+                    pairs: [
+                        { left: 'Вихтори Косола', right: 'Лидер движения Лапуа' },
+                        { left: 'Кустаа Салминен', right: 'Жертва муилутуса' },
+                        { left: 'П. Э. Свинхувуд', right: 'Президент во время мятежа в Мянтсяля' },
+                        { left: 'Крестьянский марш', right: 'Произошел в 1930 году' },
+                        { left: 'Мянтсяля', right: 'Место мятежа в 1932 году' },
+                        { left: 'IKL', right: 'Преемник движения Лапуа' }
+                    ]
+                }
+            },
+            timeline: {
+                fi: {
+                    id: 'timeline',
+                    title: '📅 Aikajärjestys',
+                    description: 'Järjestä tapahtumat oikeaan aikajärjestykseen raahaamalla niitä.',
+                    difficulty: 'hard',
+                    icon: '📅',
+                    events: [
+                        { year: 1929, event: 'Lapuanliikkeen alkaminen' },
+                        { year: 1930, event: 'Muilutukset alkavat' },
+                        { year: 1930, event: 'Talonpoikaismarssi Helsinkiin' },
+                        { year: 1930, event: 'Kommunistilakien hyväksyminen' },
+                        { year: 1932, event: 'Mäntsälän kapina' },
+                        { year: 1932, event: 'Lapuanliikkeen lakkauttaminen' }
+                    ]
+                },
+                ru: {
+                    id: 'timeline',
+                    title: '📅 Хронология',
+                    description: 'Расставьте события в правильном хронологическом порядке, перетаскивая их.',
+                    difficulty: 'hard',
+                    icon: '📅',
+                    events: [
+                        { year: 1929, event: 'Начало движения Лапуа' },
+                        { year: 1930, event: 'Начало муилутусов' },
+                        { year: 1930, event: 'Крестьянский марш в Хельсинки' },
+                        { year: 1930, event: 'Принятие коммунистических законов' },
+                        { year: 1932, event: 'Мятеж в Мянтсяля' },
+                        { year: 1932, event: 'Упразднение движения Лапуа' }
+                    ]
+                }
             }
         };
 
         // Mock leaderboard data
         const mockLeaderboard = [
-            { name: "Matti V.", score: 850, avatar: "M" },
-            { name: "Emma K.", score: 820, avatar: "E" },
-            { name: "Mikko L.", score: 790, avatar: "M" },
-            { name: "Sofia R.", score: 760, avatar: "S" },
-            { name: "Juho M.", score: 730, avatar: "J" }
+            { name: 'Emma Virtanen', score: 850, avatar: '👧' },
+            { name: 'Mikko Järvinen', score: 720, avatar: '👦' },
+            { name: 'Aino Korhonen', score: 690, avatar: '👧' },
+            { name: 'Eetu Laaksonen', score: 650, avatar: '👦' },
+            { name: 'Sofia Mäkelä', score: 620, avatar: '👧' },
+            { name: 'Oskari Nieminen', score: 580, avatar: '👦' },
+            { name: 'Liisa Heikkinen', score: 540, avatar: '👧' },
+            { name: 'Juhani Saarinen', score: 510, avatar: '👦' },
+            { name: 'Katri Laine', score: 480, avatar: '👧' }
         ];
 
-        // Helper functions
-        function t(key) {
-            const keys = key.split('.');
-            let value = content[state.lang];
-            for (let k of keys) {
-                value = value[k];
-            }
-            return value;
-        }
-
+        // Functions
         function setState(newState) {
-            Object.assign(state, newState);
+            state = { ...state, ...newState };
             render();
         }
 
-        function setLanguage(lang) {
+        function handleLanguageChange(lang) {
             setState({ lang });
         }
 
+        function handleTabChange(tab) {
+            setState({ activeTab: tab, activeGame: null });
+        }
+
         function handleLogin() {
-            setState({
-                user: {
-                    name: "Opiskelija",
-                    email: "opiskelija@example.com",
-                    avatar: "O",
-                    score: 0
-                }
-            });
+            // Simulate Google login
+            const user = {
+                name: 'Oppilas ' + Math.floor(Math.random() * 100),
+                email: 'oppilas@koulu.fi',
+                score: 100,
+                avatar: '👤'
+            };
+            setState({ user });
         }
 
         function handleLogout() {
             setState({ user: null });
         }
 
-        function setActiveTab(tab) {
-            setState({ activeTab: tab, activeGame: null });
+        function handleGameSelect(gameId) {
+            const game = gamesData[gameId][state.lang];
+            let initialState = {
+                currentQuestion: 0,
+                score: 0,
+                answers: [],
+                selectedAnswer: null,
+                showFeedback: false
+            };
+
+            if (gameId === 'matching') {
+                const shuffledRight = [...game.pairs.map(p => p.right)].sort(() => Math.random() - 0.5);
+                initialState.matchingPairs = game.pairs.map((p, i) => ({
+                    left: p.left,
+                    right: shuffledRight[i],
+                    correctRight: p.right
+                }));
+                initialState.matchingSelected = null;
+            } else if (gameId === 'timeline') {
+                initialState.timelineOrder = [...game.events].sort(() => Math.random() - 0.5);
+            }
+
+            setState({ 
+                activeGame: gameId,
+                gameState: initialState
+            });
         }
 
-        function handleGameSelect(gameType) {
+        function handleTrueFalseAnswer(answer) {
+            const game = gamesData.truefalse[state.lang];
+            const currentQ = game.questions[state.gameState.currentQuestion];
+            const isCorrect = answer === currentQ.correct;
+            
             setState({
-                activeGame: gameType,
                 gameState: {
-                    currentQuestion: 0,
-                    score: 0,
-                    answers: [],
-                    showFeedback: false,
-                    selectedAnswer: null
+                    ...state.gameState,
+                    selectedAnswer: answer,
+                    showFeedback: true,
+                    score: isCorrect ? state.gameState.score + 10 : state.gameState.score
                 }
             });
         }
 
-        function handleAnswer(answerIndex) {
-            if (state.gameState.showFeedback) return;
-
-            const game = content[state.lang].games.quiz;
+        function handleMultiChoiceAnswer(index) {
+            const game = gamesData.multichoice[state.lang];
             const currentQ = game.questions[state.gameState.currentQuestion];
-            const isCorrect = answerIndex === currentQ.correct;
-
-            const newGameState = {
-                ...state.gameState,
-                selectedAnswer: answerIndex,
-                showFeedback: true,
-                score: isCorrect ? state.gameState.score + 10 : state.gameState.score,
-                answers: [...state.gameState.answers, isCorrect]
-            };
-
-            if (state.user && isCorrect) {
-                state.user.score += 10;
-            }
-
-            setState({ gameState: newGameState });
-        }
-
-        function handleTrueFalseAnswer(answer) {
-            if (state.gameState.showFeedback) return;
-
-            const game = content[state.lang].games.truefalse;
-            const currentQ = game.questions[state.gameState.currentQuestion];
-            const isCorrect = answer === currentQ.correct;
-
-            const newGameState = {
-                ...state.gameState,
-                selectedAnswer: answer,
-                showFeedback: true,
-                score: isCorrect ? state.gameState.score + 10 : state.gameState.score,
-                answers: [...state.gameState.answers, isCorrect]
-            };
-
-            if (state.user && isCorrect) {
-                state.user.score += 10;
-            }
-
-            setState({ gameState: newGameState });
+            const isCorrect = index === currentQ.correct;
+            
+            setState({
+                gameState: {
+                    ...state.gameState,
+                    selectedAnswer: index,
+                    showFeedback: true,
+                    score: isCorrect ? state.gameState.score + 15 : state.gameState.score
+                }
+            });
         }
 
         function handleNextQuestion() {
-            const gameQuestions = state.activeGame === 'quiz' 
-                ? content[state.lang].games.quiz.questions
-                : content[state.lang].games.truefalse.questions;
+            const game = gamesData[state.activeGame][state.lang];
+            const isCorrect = state.activeGame === 'truefalse'
+                ? state.gameState.selectedAnswer === game.questions[state.gameState.currentQuestion].correct
+                : state.gameState.selectedAnswer === game.questions[state.gameState.currentQuestion].correct;
 
-            if (state.gameState.currentQuestion < gameQuestions.length - 1) {
-                setState({
-                    gameState: {
-                        ...state.gameState,
-                        currentQuestion: state.gameState.currentQuestion + 1,
-                        showFeedback: false,
-                        selectedAnswer: null
-                    }
-                });
-            } else {
-                setState({
-                    gameState: {
-                        ...state.gameState,
-                        showFeedback: false,
-                        selectedAnswer: null
-                    }
-                });
+            const newAnswers = [...state.gameState.answers, isCorrect];
+            const newQuestionIndex = state.gameState.currentQuestion + 1;
+
+            if (newQuestionIndex >= game.questions.length) {
+                // Game finished
+                if (state.user) {
+                    state.user.score += state.gameState.score;
+                }
             }
+
+            setState({
+                gameState: {
+                    ...state.gameState,
+                    currentQuestion: newQuestionIndex,
+                    selectedAnswer: null,
+                    showFeedback: false,
+                    answers: newAnswers
+                }
+            });
+        }
+
+        function handleMatchingClick(side, index) {
+            if (side === 'left') {
+                if (state.gameState.matchingSelected === null || state.gameState.matchingSelected.side === 'right') {
+                    setState({
+                        gameState: {
+                            ...state.gameState,
+                            matchingSelected: { side: 'left', index }
+                        }
+                    });
+                } else {
+                    setState({
+                        gameState: {
+                            ...state.gameState,
+                            matchingSelected: null
+                        }
+                    });
+                }
+            } else {
+                if (state.gameState.matchingSelected && state.gameState.matchingSelected.side === 'left') {
+                    const leftIndex = state.gameState.matchingSelected.index;
+                    const pair = state.gameState.matchingPairs[leftIndex];
+                    
+                    if (pair.right === pair.correctRight) {
+                        // Already matched correctly
+                        setState({
+                            gameState: {
+                                ...state.gameState,
+                                matchingSelected: null
+                            }
+                        });
+                        return;
+                    }
+
+                    // Swap
+                    const newPairs = [...state.gameState.matchingPairs];
+                    const temp = newPairs[leftIndex].right;
+                    newPairs[leftIndex].right = newPairs[index].right;
+                    newPairs[index].right = temp;
+
+                    // Check if all matched
+                    const allMatched = newPairs.every(p => p.right === p.correctRight);
+                    const newScore = allMatched ? state.gameState.score + 50 : state.gameState.score;
+
+                    if (allMatched && state.user) {
+                        state.user.score += newScore;
+                    }
+
+                    setState({
+                        gameState: {
+                            ...state.gameState,
+                            matchingPairs: newPairs,
+                            matchingSelected: null,
+                            score: newScore
+                        }
+                    });
+                } else {
+                    setState({
+                        gameState: {
+                            ...state.gameState,
+                            matchingSelected: { side: 'right', index }
+                        }
+                    });
+                }
+            }
+        }
+
+        function handleCheckTimeline() {
+            const game = gamesData.timeline[state.lang];
+            const correctOrder = [...game.events].sort((a, b) => {
+                if (a.year === b.year) {
+                    return game.events.indexOf(a) - game.events.indexOf(b);
+                }
+                return a.year - b.year;
+            });
+            
+            const isCorrect = JSON.stringify(state.gameState.timelineOrder) === JSON.stringify(correctOrder);
+            const newScore = isCorrect ? state.gameState.score + 30 : state.gameState.score;
+
+            if (isCorrect && state.user) {
+                state.user.score += newScore;
+            }
+
+            setState({
+                gameState: {
+                    ...state.gameState,
+                    score: newScore,
+                    showFeedback: true
+                }
+            });
+        }
+
+        // Drag and drop for timeline
+        let draggedIndex = null;
+
+        function handleDragStart(index) {
+            draggedIndex = index;
+        }
+
+        function handleDragOver(e, index) {
+            e.preventDefault();
+            if (draggedIndex === null || draggedIndex === index) return;
+
+            const newOrder = [...state.gameState.timelineOrder];
+            const draggedItem = newOrder[draggedIndex];
+            newOrder.splice(draggedIndex, 1);
+            newOrder.splice(index, 0, draggedItem);
+
+            draggedIndex = index;
+
+            setState({
+                gameState: {
+                    ...state.gameState,
+                    timelineOrder: newOrder
+                }
+            });
+        }
+
+        function handleDragEnd() {
+            draggedIndex = null;
         }
 
         // Render functions
@@ -1448,39 +1720,40 @@
                 <header class="header">
                     <div class="header-content">
                         <div class="header-top">
-                            <div class="logo">${t.appTitle}</div>
+                            <div class="logo">${t.title}</div>
                             <div class="header-actions">
                                 <div class="lang-switch">
-                                    <button class="lang-btn ${state.lang === 'fi' ? 'active' : ''}" onclick="setLanguage('fi')">
-                                        🇫🇮 FI
-                                    </button>
-                                    <button class="lang-btn ${state.lang === 'ru' ? 'active' : ''}" onclick="setLanguage('ru')">
-                                        🇷🇺 RU
-                                    </button>
+                                    <button class="lang-btn ${state.lang === 'fi' ? 'active' : ''}" 
+                                            onclick="handleLanguageChange('fi')">Suomi</button>
+                                    <button class="lang-btn ${state.lang === 'ru' ? 'active' : ''}" 
+                                            onclick="handleLanguageChange('ru')">Русский</button>
                                 </div>
                                 <div class="user-section">
-                                    ${state.user ? `
-                                        <div class="user-profile">
-                                            <div class="user-avatar">${state.user.avatar}</div>
-                                            <div>
-                                                <div class="user-name">${state.user.name}</div>
-                                                <div class="user-score">${state.user.score} ${state.lang === 'fi' ? 'pistettä' : 'очков'}</div>
+                                    ${state.user 
+                                        ? `
+                                            <div class="user-display">
+                                                <div class="avatar">${state.user.avatar}</div>
+                                                <div class="user-info-header">
+                                                    <div class="user-name">${state.user.name}</div>
+                                                    <div class="user-score">${state.user.score} ${t.points}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <button class="btn btn-secondary" onclick="handleLogout()">
-                                            ${t.logout}
-                                        </button>
-                                    ` : `
-                                        <button class="btn btn-primary" onclick="handleLogin()">
-                                            ${t.login}
-                                        </button>
-                                    `}
+                                            <button class="btn btn-secondary" onclick="handleLogout()">
+                                                ${t.logout}
+                                            </button>
+                                        `
+                                        : `
+                                            <button class="btn btn-primary" onclick="handleLogin()">
+                                                ${t.loginWithGoogle}
+                                            </button>
+                                        `
+                                    }
                                 </div>
                             </div>
                         </div>
                         <div class="title-section">
                             <h1>${t.subtitle}</h1>
-                            <p>${state.lang === 'fi' ? 'Oppi historian kautta' : 'Обучение через историю'}</p>
+                            <p>1929-1932</p>
                         </div>
                     </div>
                 </header>
@@ -1488,23 +1761,28 @@
         }
 
         function renderNav() {
-            const t = content[state.lang].nav;
+            const t = content[state.lang];
             return `
-                <nav class="nav-tabs">
-                    <div class="nav-tab ${state.activeTab === 'audio' ? 'active' : ''}" onclick="setActiveTab('audio')">
-                        🎧 ${t.audio}
+                <nav class="nav">
+                    <div class="nav-item ${state.activeTab === 'audio' ? 'active' : ''}" 
+                         onclick="handleTabChange('audio')">
+                        ${t.nav.audio}
                     </div>
-                    <div class="nav-tab ${state.activeTab === 'timeline' ? 'active' : ''}" onclick="setActiveTab('timeline')">
-                        ⏰ ${t.timeline}
+                    <div class="nav-item ${state.activeTab === 'timeline' ? 'active' : ''}" 
+                         onclick="handleTabChange('timeline')">
+                        ${t.nav.timeline}
                     </div>
-                    <div class="nav-tab ${state.activeTab === 'terms' ? 'active' : ''}" onclick="setActiveTab('terms')">
-                        📖 ${t.terms}
+                    <div class="nav-item ${state.activeTab === 'terms' ? 'active' : ''}" 
+                         onclick="handleTabChange('terms')">
+                        ${t.nav.terms}
                     </div>
-                    <div class="nav-tab ${state.activeTab === 'games' ? 'active' : ''}" onclick="setActiveTab('games')">
-                        🎮 ${t.games}
+                    <div class="nav-item ${state.activeTab === 'games' ? 'active' : ''}" 
+                         onclick="handleTabChange('games')">
+                        ${t.nav.games}
                     </div>
-                    <div class="nav-tab ${state.activeTab === 'leaderboard' ? 'active' : ''}" onclick="setActiveTab('leaderboard')">
-                        🏆 ${t.leaderboard}
+                    <div class="nav-item ${state.activeTab === 'leaderboard' ? 'active' : ''}" 
+                         onclick="handleTabChange('leaderboard')">
+                        ${t.nav.leaderboard}
                     </div>
                 </nav>
             `;
@@ -1513,37 +1791,30 @@
         function renderAudioVideo() {
             const t = content[state.lang];
             return `
-                <div class="section active">
+                <div class="section ${state.activeTab === 'audio' ? 'active' : ''}">
                     <h2 class="section-title">${t.nav.audio}</h2>
-                    <p style="margin-bottom: 1.5rem; color: var(--text-medium);">
-                        ${state.lang === 'fi' 
-                            ? 'Kuuntele äänikatsaukset ja katso videot historian tapahtumista. Lataa tiedostot Google Drivestä ja korvaa linkit.'
-                            : 'Слушайте аудиообзоры и смотрите видео об исторических событиях. Загрузите файлы из Google Drive и замените ссылки.'}
-                    </p>
                     <div class="media-grid">
-                        ${t.chapters.map(chapter => `
+                        ${t.audioVideos.map(item => `
                             <div class="media-card">
-                                <div class="media-card-header">
-                                    <h3 class="media-card-title">${chapter.title}</h3>
-                                </div>
-                                <div class="media-card-body">
-                                    <div class="media-type">🎧 Audio / 📹 Video</div>
-                                    <p class="media-description">${chapter.description}</p>
-                                    ${chapter.audioUrl !== 'YOUR_GOOGLE_DRIVE_AUDIO_LINK_HERE' ? `
-                                        <div class="media-player">
-                                            <audio controls>
-                                                <source src="${chapter.audioUrl}" type="audio/mp4">
-                                                ${state.lang === 'fi' ? 'Selaimesi ei tue äänen toistoa.' : 'Ваш браузер не поддерживает воспроизведение аудио.'}
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                                <div class="media-player">
+                                    ${item.type === 'audio' 
+                                        ? `
+                                            <audio class="audio-player" controls>
+                                                <source src="${item.file}" type="audio/mpeg">
+                                                Your browser does not support the audio element.
                                             </audio>
-                                        </div>
-                                    ` : `
-                                        <p style="color: var(--danger); font-size: 0.9rem; margin-top: 1rem;">
-                                            ${state.lang === 'fi' 
-                                                ? '⚠️ Lisää äänitiedoston linkki HTML-tiedostoon'
-                                                : '⚠️ Добавьте ссылку на аудиофайл в HTML-файл'}
-                                        </p>
-                                    `}
+                                        `
+                                        : `
+                                            <video class="video-player" controls>
+                                                <source src="${item.file}" type="video/mp4">
+                                                Your browser does not support the video element.
+                                            </video>
+                                        `
+                                    }
                                 </div>
+                                <div class="duration">⏱️ ${item.duration}</div>
                             </div>
                         `).join('')}
                     </div>
@@ -1557,12 +1828,13 @@
                 <div class="section ${state.activeTab === 'timeline' ? 'active' : ''}">
                     <h2 class="section-title">${t.nav.timeline}</h2>
                     <div class="timeline">
-                        ${t.timeline.map(item => `
+                        ${t.timeline.map((item, index) => `
                             <div class="timeline-item">
-                                <div class="timeline-marker importance-${item.importance}"></div>
+                                <div class="timeline-marker"></div>
                                 <div class="timeline-content">
                                     <div class="timeline-year">${item.year}</div>
-                                    <div class="timeline-event">${item.event}</div>
+                                    <h3 class="timeline-title">${item.title}</h3>
+                                    <p class="timeline-description">${item.description}</p>
                                 </div>
                             </div>
                         `).join('')}
@@ -1579,8 +1851,8 @@
                     <div class="terms-grid">
                         ${t.terms.map(term => `
                             <div class="term-card">
-                                <div class="term-name">${term.term}</div>
-                                <div class="term-definition">${term.definition}</div>
+                                <h3 class="term-title">${term.term}</h3>
+                                <p class="term-description">${term.definition}</p>
                             </div>
                         `).join('')}
                     </div>
@@ -1590,148 +1862,41 @@
 
         function renderGames() {
             const t = content[state.lang];
-            
-            if (state.activeGame === 'quiz') {
-                return renderQuizGame();
+
+            if (state.activeGame) {
+                if (state.activeGame === 'truefalse') {
+                    return renderTrueFalseGame();
+                } else if (state.activeGame === 'multichoice') {
+                    return renderMultiChoiceGame();
+                } else if (state.activeGame === 'matching') {
+                    return renderMatchingGame();
+                } else if (state.activeGame === 'timeline') {
+                    return renderTimelineGame();
+                }
             }
-            
-            if (state.activeGame === 'truefalse') {
-                return renderTrueFalseGame();
-            }
-            
+
             return `
                 <div class="section ${state.activeTab === 'games' ? 'active' : ''}">
-                    <h2 class="section-title">${t.nav.games}</h2>
+                    <h2 class="section-title">${t.games.title}</h2>
                     <div class="games-grid">
-                        <div class="game-card" onclick="handleGameSelect('quiz')">
-                            <div class="game-icon">${t.games.quiz.icon}</div>
-                            <h3 class="game-title">${t.games.quiz.title}</h3>
-                            <p class="game-description">${t.games.quiz.description}</p>
-                            ${state.user ? `<div class="game-score">🏆 ${t.yourScore}: ${state.user.score}</div>` : ''}
-                        </div>
-                        <div class="game-card" onclick="handleGameSelect('truefalse')">
-                            <div class="game-icon">${t.games.truefalse.icon}</div>
-                            <h3 class="game-title">${t.games.truefalse.title}</h3>
-                            <p class="game-description">${t.games.truefalse.description}</p>
-                            ${state.user ? `<div class="game-score">🏆 ${t.yourScore}: ${state.user.score}</div>` : ''}
-                        </div>
-                        <div class="game-card disabled">
-                            <div class="game-icon">⏰</div>
-                            <h3 class="game-title">${state.lang === 'fi' ? 'Aikajanan järjestys' : 'Порядок хронологии'}</h3>
-                            <p class="game-description">${state.lang === 'fi' ? 'Järjestä tapahtumat oikeaan aikajärjestykseen' : 'Расположите события в правильном хронологическом порядке'}</p>
-                            <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-medium);">
-                                ${state.lang === 'fi' ? 'Tulossa pian...' : 'Скоро...'}
-                            </div>
-                        </div>
-                        <div class="game-card disabled">
-                            <div class="game-icon">🔗</div>
-                            <h3 class="game-title">${state.lang === 'fi' ? 'Yhdistä termit' : 'Сопоставление терминов'}</h3>
-                            <p class="game-description">${state.lang === 'fi' ? 'Yhdistä termit niiden määritelmiin' : 'Сопоставьте термины с их определениями'}</p>
-                            <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-medium);">
-                                ${state.lang === 'fi' ? 'Tulossa pian...' : 'Скоро...'}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderQuizGame() {
-            const t = content[state.lang];
-            const game = t.games.quiz;
-            const currentQ = game.questions[state.gameState.currentQuestion];
-            const gameFinished = state.gameState.currentQuestion >= game.questions.length && !state.gameState.showFeedback;
-
-            if (gameFinished) {
-                const correctCount = state.gameState.answers.filter(a => a).length;
-                const wrongCount = state.gameState.answers.length - correctCount;
-
-                return `
-                    <div class="section active">
-                        <h2 class="section-title">${game.title}</h2>
-                        <div class="game-play">
-                            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: var(--primary);">
-                                ${state.lang === 'fi' ? '🎉 Peli päättyi!' : '🎉 Игра окончена!'}
-                            </h3>
-                            <div class="game-stats">
-                                <div class="stat">
-                                    <div class="stat-value">${state.gameState.score}</div>
-                                    <div class="stat-label">${t.yourScore}</div>
+                        ${Object.keys(gamesData).map(gameId => {
+                            const game = gamesData[gameId][state.lang];
+                            return `
+                                <div class="game-card" onclick="handleGameSelect('${gameId}')">
+                                    <div class="game-icon">${game.icon}</div>
+                                    <h3 class="game-title">${game.title}</h3>
+                                    <p class="game-description">${game.description}</p>
+                                    <span class="game-difficulty difficulty-${game.difficulty}">
+                                        ${game.difficulty === 'easy' 
+                                            ? (state.lang === 'fi' ? 'Helppo' : 'Легко')
+                                            : game.difficulty === 'medium'
+                                            ? (state.lang === 'fi' ? 'Keskitaso' : 'Средне')
+                                            : (state.lang === 'fi' ? 'Vaikea' : 'Сложно')
+                                        }
+                                    </span>
                                 </div>
-                                <div class="stat">
-                                    <div class="stat-value" style="color: var(--success)">${correctCount}</div>
-                                    <div class="stat-label">${t.correctAnswers}</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value" style="color: var(--danger)">${wrongCount}</div>
-                                    <div class="stat-label">${t.wrongAnswers}</div>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
-                                <button class="btn btn-primary" onclick="handleGameSelect('quiz')">
-                                    ${t.playAgain}
-                                </button>
-                                <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
-                                    ${t.backToGames}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            return `
-                <div class="section active">
-                    <h2 class="section-title">${game.title}</h2>
-                    <div style="margin-bottom: 1rem; color: var(--text-medium); text-align: center;">
-                        ${state.lang === 'fi' ? 'Kysymys' : 'Вопрос'} ${state.gameState.currentQuestion + 1} / ${game.questions.length}
-                    </div>
-                    <div class="game-play">
-                        <div class="game-question">${currentQ.question}</div>
-                        <div class="game-options">
-                            ${currentQ.options.map((option, index) => `
-                                <div class="game-option ${
-                                    state.gameState.showFeedback
-                                        ? index === currentQ.correct
-                                            ? 'correct'
-                                            : index === state.gameState.selectedAnswer
-                                            ? 'incorrect'
-                                            : ''
-                                        : ''
-                                } ${state.gameState.showFeedback ? 'disabled' : ''}"
-                                onclick="${!state.gameState.showFeedback ? `handleAnswer(${index})` : ''}">
-                                    ${option}
-                                </div>
-                            `).join('')}
-                        </div>
-                        ${state.gameState.showFeedback ? `
-                            <div class="game-feedback ${state.gameState.selectedAnswer === currentQ.correct ? 'correct' : 'incorrect'}">
-                                ${state.gameState.selectedAnswer === currentQ.correct
-                                    ? (state.lang === 'fi' ? '✓ Oikein! Hienoa työtä!' : '✓ Правильно! Отличная работа!')
-                                    : (state.lang === 'fi' ? '✗ Väärin. Oikea vastaus oli: ' + currentQ.options[currentQ.correct] : '✗ Неправильно. Правильный ответ: ' + currentQ.options[currentQ.correct])}
-                            </div>
-                            <button class="btn btn-primary" onclick="handleNextQuestion()" style="margin-top: 1rem; width: 100%;">
-                                ${t.nextQuestion}
-                            </button>
-                        ` : ''}
-                        <div class="game-stats" style="margin-top: 2rem;">
-                            <div class="stat">
-                                <div class="stat-value">${state.gameState.score}</div>
-                                <div class="stat-label">${t.yourScore}</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value" style="color: var(--success)">
-                                    ${state.gameState.answers.filter(a => a).length}
-                                </div>
-                                <div class="stat-label">${t.correctAnswers}</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value" style="color: var(--danger)">
-                                    ${state.gameState.answers.filter(a => !a).length}
-                                </div>
-                                <div class="stat-label">${t.wrongAnswers}</div>
-                            </div>
-                        </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
             `;
@@ -1739,10 +1904,10 @@
 
         function renderTrueFalseGame() {
             const t = content[state.lang];
-            const game = t.games.truefalse;
-            const currentQ = game.questions[state.gameState.currentQuestion];
-            const gameFinished = state.gameState.currentQuestion >= game.questions.length && !state.gameState.showFeedback;
+            const game = gamesData.truefalse[state.lang];
 
+            const gameFinished = state.gameState.currentQuestion >= game.questions.length;
+            
             if (gameFinished) {
                 const correctCount = state.gameState.answers.filter(a => a).length;
                 const wrongCount = state.gameState.answers.length - correctCount;
@@ -1780,6 +1945,8 @@
                     </div>
                 `;
             }
+
+            const currentQ = game.questions[state.gameState.currentQuestion];
 
             return `
                 <div class="section active">
@@ -1844,6 +2011,276 @@
                                 </div>
                                 <div class="stat-label">${t.wrongAnswers}</div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMultiChoiceGame() {
+            const t = content[state.lang];
+            const game = gamesData.multichoice[state.lang];
+
+            const gameFinished = state.gameState.currentQuestion >= game.questions.length;
+            
+            if (gameFinished) {
+                const correctCount = state.gameState.answers.filter(a => a).length;
+                const wrongCount = state.gameState.answers.length - correctCount;
+
+                return `
+                    <div class="section active">
+                        <h2 class="section-title">${game.title}</h2>
+                        <div class="game-play">
+                            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: var(--primary);">
+                                ${state.lang === 'fi' ? '🎉 Peli päättyi!' : '🎉 Игра окончена!'}
+                            </h3>
+                            <div class="game-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${state.gameState.score}</div>
+                                    <div class="stat-label">${t.yourScore}</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" style="color: var(--success)">${correctCount}</div>
+                                    <div class="stat-label">${t.correctAnswers}</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" style="color: var(--danger)">${wrongCount}</div>
+                                    <div class="stat-label">${t.wrongAnswers}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="handleGameSelect('multichoice')">
+                                    ${t.playAgain}
+                                </button>
+                                <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
+                                    ${t.backToGames}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const currentQ = game.questions[state.gameState.currentQuestion];
+
+            return `
+                <div class="section active">
+                    <h2 class="section-title">${game.title}</h2>
+                    <div style="margin-bottom: 1rem; color: var(--text-medium); text-align: center;">
+                        ${state.lang === 'fi' ? 'Kysymys' : 'Вопрос'} ${state.gameState.currentQuestion + 1} / ${game.questions.length}
+                    </div>
+                    <div class="game-play">
+                        <div class="game-question">${currentQ.question}</div>
+                        <div class="game-options">
+                            ${currentQ.options.map((option, index) => `
+                                <div class="game-option ${
+                                    state.gameState.showFeedback
+                                        ? index === currentQ.correct
+                                            ? 'correct'
+                                            : state.gameState.selectedAnswer === index
+                                            ? 'incorrect'
+                                            : ''
+                                        : ''
+                                } ${state.gameState.showFeedback ? 'disabled' : ''}"
+                                onclick="${!state.gameState.showFeedback ? `handleMultiChoiceAnswer(${index})` : ''}">
+                                    ${option}
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${state.gameState.showFeedback ? `
+                            <div class="game-feedback ${state.gameState.selectedAnswer === currentQ.correct ? 'correct' : 'incorrect'}">
+                                ${state.gameState.selectedAnswer === currentQ.correct
+                                    ? (state.lang === 'fi' ? '✓ Oikein! Hienoa työtä!' : '✓ Правильно! Отличная работа!')
+                                    : (state.lang === 'fi' 
+                                        ? '✗ Väärin. Oikea vastaus oli: ' + currentQ.options[currentQ.correct]
+                                        : '✗ Неправильно. Правильный ответ: ' + currentQ.options[currentQ.correct])}
+                            </div>
+                            <button class="btn btn-primary" onclick="handleNextQuestion()" style="margin-top: 1rem; width: 100%;">
+                                ${t.nextQuestion}
+                            </button>
+                        ` : ''}
+                        <div class="game-stats" style="margin-top: 2rem;">
+                            <div class="stat">
+                                <div class="stat-value">${state.gameState.score}</div>
+                                <div class="stat-label">${t.yourScore}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value" style="color: var(--success)">
+                                    ${state.gameState.answers.filter(a => a).length}
+                                </div>
+                                <div class="stat-label">${t.correctAnswers}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value" style="color: var(--danger)">
+                                    ${state.gameState.answers.filter(a => !a).length}
+                                </div>
+                                <div class="stat-label">${t.wrongAnswers}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMatchingGame() {
+            const t = content[state.lang];
+            const game = gamesData.matching[state.lang];
+
+            const allMatched = state.gameState.matchingPairs.every(p => p.right === p.correctRight);
+
+            if (allMatched && state.gameState.score > 0) {
+                return `
+                    <div class="section active">
+                        <h2 class="section-title">${game.title}</h2>
+                        <div class="game-play">
+                            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: var(--primary);">
+                                ${state.lang === 'fi' ? '🎉 Onneksi olkoon! Kaikki parit oikein!' : '🎉 Поздравляем! Все пары правильны!'}
+                            </h3>
+                            <div class="game-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${state.gameState.score}</div>
+                                    <div class="stat-label">${t.yourScore}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="handleGameSelect('matching')">
+                                    ${t.playAgain}
+                                </button>
+                                <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
+                                    ${t.backToGames}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="section active">
+                    <h2 class="section-title">${game.title}</h2>
+                    <p style="text-align: center; color: var(--text-medium); margin-bottom: 2rem;">
+                        ${state.lang === 'fi' 
+                            ? 'Klikkaa vasemmanpuoleista termiä ja sitten oikeanpuoleista selitystä yhdistääksesi ne. Vaihda paikkaa klikkaamalla uudelleen.'
+                            : 'Щелкните термин слева, затем объяснение справа, чтобы соединить их. Поменяйте местами, щелкнув снова.'}
+                    </p>
+                    <div class="game-play">
+                        <div class="matching-container">
+                            <div class="matching-column">
+                                <h3>${state.lang === 'fi' ? 'Termit' : 'Термины'}</h3>
+                                <div class="matching-items">
+                                    ${state.gameState.matchingPairs.map((pair, index) => `
+                                        <div class="matching-item ${
+                                            pair.right === pair.correctRight ? 'matched' : 
+                                            state.gameState.matchingSelected?.side === 'left' && state.gameState.matchingSelected?.index === index ? 'selected' : ''
+                                        }" onclick="handleMatchingClick('left', ${index})">
+                                            ${pair.left}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="matching-column">
+                                <h3>${state.lang === 'fi' ? 'Selitykset' : 'Объяснения'}</h3>
+                                <div class="matching-items">
+                                    ${state.gameState.matchingPairs.map((pair, index) => `
+                                        <div class="matching-item ${
+                                            pair.right === pair.correctRight ? 'matched' : 
+                                            state.gameState.matchingSelected?.side === 'right' && state.gameState.matchingSelected?.index === index ? 'selected' : ''
+                                        }" onclick="handleMatchingClick('right', ${index})">
+                                            ${pair.right}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
+                                ${t.backToGames}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTimelineGame() {
+            const t = content[state.lang];
+            const game = gamesData.timeline[state.lang];
+
+            const correctOrder = [...game.events].sort((a, b) => {
+                if (a.year === b.year) {
+                    return game.events.indexOf(a) - game.events.indexOf(b);
+                }
+                return a.year - b.year;
+            });
+
+            const isCorrect = state.gameState.showFeedback && 
+                JSON.stringify(state.gameState.timelineOrder) === JSON.stringify(correctOrder);
+
+            if (state.gameState.showFeedback && isCorrect) {
+                return `
+                    <div class="section active">
+                        <h2 class="section-title">${game.title}</h2>
+                        <div class="game-play">
+                            <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem; color: var(--primary);">
+                                ${state.lang === 'fi' ? '🎉 Onneksi olkoon! Aikajärjestys on oikein!' : '🎉 Поздравляем! Хронология правильная!'}
+                            </h3>
+                            <div class="game-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${state.gameState.score}</div>
+                                    <div class="stat-label">${t.yourScore}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                                <button class="btn btn-primary" onclick="handleGameSelect('timeline')">
+                                    ${t.playAgain}
+                                </button>
+                                <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
+                                    ${t.backToGames}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="section active">
+                    <h2 class="section-title">${game.title}</h2>
+                    <p style="text-align: center; color: var(--text-medium); margin-bottom: 2rem;">
+                        ${state.lang === 'fi' 
+                            ? 'Raahaa tapahtumia järjestääksesi ne oikeaan aikajärjestykseen (vanhimmasta uusimpaan).'
+                            : 'Перетаскивайте события, чтобы расставить их в правильном хронологическом порядке (от старого к новому).'}
+                    </p>
+                    <div class="game-play">
+                        <div class="timeline-game-items">
+                            ${state.gameState.timelineOrder.map((event, index) => `
+                                <div class="timeline-game-item" 
+                                     draggable="true"
+                                     ondragstart="handleDragStart(${index})"
+                                     ondragover="handleDragOver(event, ${index})"
+                                     ondragend="handleDragEnd()">
+                                    <div class="drag-handle">☰</div>
+                                    <div class="timeline-game-content">
+                                        <div class="timeline-game-year ${state.gameState.showFeedback ? 'revealed' : ''}">${event.year}</div>
+                                        <div class="timeline-game-event">${event.event}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${state.gameState.showFeedback && !isCorrect ? `
+                            <div class="game-feedback incorrect" style="margin-top: 2rem;">
+                                ${state.lang === 'fi' 
+                                    ? '✗ Ei aivan oikein. Yritä uudelleen!'
+                                    : '✗ Не совсем правильно. Попробуйте снова!'}
+                            </div>
+                        ` : ''}
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="handleCheckTimeline()">
+                                ${t.checkAnswer}
+                            </button>
+                            <button class="btn btn-secondary" onclick="setState({ activeGame: null })">
+                                ${t.backToGames}
+                            </button>
                         </div>
                     </div>
                 </div>
