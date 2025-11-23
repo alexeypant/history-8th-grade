@@ -949,46 +949,22 @@
                 logout: 'Kirjaudu ulos',
                 points: 'pistettä',
                 audioVideos: [
+                    {
+                        id: 1,
+                        title: 'Ääniyhteenveto',
+                        description: '',
+                        type: 'audio',
+                        duration: '',
+                        file: 'lapuanliike-overview-fi.m4a'
+                    },
                     // {
-                    //     id: 1,
-                    //     title: 'Lapuanliikkeen synty',
-                    //     description: 'Opi lapuanliikkeen taustoista ja sen synnystä 1920-luvun lopun Suomessa.',
+                    //     id: 4,
+                    //     title: 'Videoyhteenveto',
+                    //     description: '',
                     //     type: 'audio',
-                    //     duration: '5:32',
-                    //     file: 'audio/lapuanliike_synty.mp3'
+                    //     duration: '',
+                    //     file: 'myantsyala_myatezh_fi.m4a'
                     // },
-                    // {
-                    //     id: 2,
-                    //     title: 'Muilutukset ja väkivalta',
-                    //     description: 'Tutustu lapuanliikkeen väkivaltaisiin menetelmiin ja muilutuksiin.',
-                    //     type: 'video',
-                    //     duration: '8:45',
-                    //     file: 'videos/muilutukset.mp4'
-                    // },
-                    {
-                        id: 3,
-                        title: 'Talonpoikaismarssi 1930',
-                        description: 'Katso dokumentti suuresta talonpoikaismarssista ja sen vaikutuksista.',
-                        type: 'audio',
-                        duration: '12:15',
-                        file: 'krestyanskii_marsh_fi.m4a'
-                    },
-                    {
-                        id: 4,
-                        title: 'Mäntsälän kapina',
-                        description: 'Kuuntele kertomus lapuanliikkeen loppuvaiheista ja Mäntsälän kapinasta.',
-                        type: 'audio',
-                        duration: '6:18',
-                        file: 'myantsyala_myatezh_fi.m4a'
-                    },
-                    {
-                        id: 5,
-                        title: 'Demokratian säilyminen',
-                        description: 'Ymmärrä miksi Suomi säilyi demokratiana toisin kuin monet muut Euroopan maat.',
-                        type: 'audio',
-                        duration: '10:30',
-                        file: 'sohranenie_demokratii_fi.m4a'
-                    }
                 ],
                 timeline: [
                     {
@@ -1085,52 +1061,20 @@
                 audioVideos: [
                     {
                         id: 1,
-                        title: 'Возникновение движения Лапуа',
-                        description: 'Узнайте о предпосылках и возникновении движения Лапуа в конце 1920-х годов в Финляндии.',
+                        title: 'Аудиообзор',
+                        description: '',
                         type: 'audio',
-                        duration: '5:32',
-                        file: 'lapuan_movement_ru.m4a'
+                        duration: '',
+                        file: 'lapuanliike-overview-ru.m4a'
                     },
-                    {
-                        id: 1,
-                        title: 'Возникновение движения Лапуа',
-                        description: 'Узнайте о предпосылках и возникновении движения Лапуа в конце 1920-х годов в Финляндии.',
-                        type: 'video',
-                        duration: '5:32',
-                        file: 'lapuan_movement_video_ru.mp4'
-                    },
-                    {
-                        id: 2,
-                        title: 'Муилутусы и насилие',
-                        description: 'Познакомьтесь с насильственными методами движения Лапуа и муилутусами.',
-                        type: 'audio',
-                        duration: '8:45',
-                        file: 'muiltusy_nasilie_ru.m4a'
-                    },
-                    {
-                        id: 3,
-                        title: 'Крестьянский марш 1930',
-                        description: 'Посмотрите документальный фильм о великом крестьянском марше и его последствиях.',
-                        type: 'audio',
-                        duration: '12:15',
-                        file: 'krestyanskii_marsh_ru.m4a'
-                    },
-                    {
-                        id: 4,
-                        title: 'Мятеж в Мянтсяля',
-                        description: 'Послушайте рассказ о завершающей фазе движения Лапуа и мятеже в Мянтсяля.',
-                        type: 'audio',
-                        duration: '6:18',
-                        file: 'myantsyala_myatezh_ru.m4a'
-                    },
-                    {
-                        id: 5,
-                        title: 'Сохранение демократии',
-                        description: 'Поймите, почему Финляндия осталась демократией в отличие от многих других европейских стран.',
-                        type: 'audio',
-                        duration: '10:30',
-                        file: 'sohranenie_demokratii_ru.m4a'
-                    }
+                    // {
+                    //     id: 1,
+                    //     title: 'Видеообзор',
+                    //     description: '',
+                    //     type: 'video',
+                    //     duration: '',
+                    //     file: 'lapuan_movement_video_ru.mp4'
+                    // }
                 ],
                 timeline: [
                     {
@@ -1797,7 +1741,7 @@
                         ${t.audioVideos.map(item => `
                             <div class="media-card">
                                 <h3>${item.title}</h3>
-                                <p>${item.description}</p>
+<!--                                <p>${item.description}</p>-->
                                 <div class="media-player">
                                     ${item.type === 'audio' 
                                         ? `
@@ -1814,7 +1758,7 @@
                                         `
                                     }
                                 </div>
-                                <div class="duration">⏱️ ${item.duration}</div>
+<!--                                <div class="duration">⏱️ ${item.duration}</div>-->
                             </div>
                         `).join('')}
                     </div>
